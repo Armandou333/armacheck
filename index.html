@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Seu IP</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      text-align: center;
+      padding: 50px;
+    }
+    #ip-box {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ccc;
+      display: inline-block;
+      padding: 30px;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  <div id="ip-box">
+    <h2>Seu IP Público:</h2>
+    <p id="ip">Carregando...</p>
+  </div>
+
+  <script>
+    fetch('https://api.ipify.org?format=json')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('ip').textContent = data.ip;
+      })
+      .catch(() => {
+        document.getElementById('ip').textContent = 'Erro ao obter o IP';
+      });
+  </script>
+</body>
+</html>
